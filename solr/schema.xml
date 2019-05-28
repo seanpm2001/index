@@ -356,6 +356,9 @@ replace="all"
     <field name="topic_ref" type="text" indexed="true" stored="false" multiValued="true"/>
     <field name="urn" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
     <field name="zdb" type="string" indexed="true" stored="true" multiValued="false" docValues="true"/>
+    <!-- arthistoricum -->
+    <field name="copies_url" type="string" indexed="false" stored="true" multiValued="true"/>
+    <field name="owner" type="string" indexed="false" stored="true" multiValued="true"/>
     <!-- Dynamic fields for customization without schema modification -->
     <dynamicField name="callnumber_*" type="code" indexed="true" stored="true" multiValued="true"/>
     <dynamicField name="barcode_*" type="code" indexed="true" stored="true" multiValued="true"/>
