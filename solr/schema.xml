@@ -308,7 +308,8 @@ replace="all"
     <field name="first_indexed" type="date" indexed="true" stored="true" docValues="true"/>
     <field name="last_indexed" type="date" indexed="true" stored="true" docValues="true" default="NOW"/>
     <!-- finc -->
-    <field name="access_facet" type="string" indexed="true" stored="true" multiValued="false" docValues="true"/>
+    <!-- access_facet is a required field (in finc context), i.e., you need to ensure that this field gets a value via a mapping (i.e. before indexing) -->
+    <field name="access_facet" type="string" indexed="true" stored="true" multiValued="false" docValues="true" required="true"/>
     <field name="author2_orig" type="textProper" indexed="true" stored="true" multiValued="true"/>
     <field name="author_corporate2_orig" type="textProper" indexed="true" stored="true" multiValued="true"/>
     <field name="author_corporate2_role" type="string" indexed="true" stored="true" multiValued="true" docValues="true"/>
