@@ -67,6 +67,7 @@ dissertation_note,true
 edition
 era,true
 era_facet,true
+facet_avail,true
 facet_de14_branch_collcode_exception,true
 film_heading,true
 finc_class_facet,true
@@ -105,6 +106,7 @@ hierarchytype,false
 id
 illustrated,false
 imprint,false
+imprint_str_mv,true
 institution,true
 is_hierarchy_id,false
 is_hierarchy_title,false
