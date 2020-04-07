@@ -43,7 +43,7 @@
 
   <lib dir="${solr.install.dir:}/contrib/analysis-extras/lib" regex=".*\.jar" />
   <lib dir="${solr.install.dir:}/contrib/analysis-extras/lucene-libs" regex=".*\.jar" />
-  <lib dir="${solr.install.dir:}/dist/" regex="solr-analysis-extras-\d.*\.jar"/>
+  <lib dir="${solr.install.dir:}/dist/" regex="solr-analysis-extras-\d.*\.jar" />
 
   <indexConfig>
 
@@ -200,7 +200,7 @@
     <!-- VuFind uses the default Solr settings for filterCache, which should produce a high
          hit rate. You can carefully adjust the filterCache and check the hit ratio in 
          admin>plugins>stats -->  
-    <filterCache class="solr.FastLRUCache" size="300000" initialSize="300000" autowarmCount="50000" cleanupThread="true"/>
+    <filterCache class="solr.FastLRUCache" size="6000" initialSize="6000" autowarmCount="3000" cleanupThread="true"/>
 
    <!-- queryResultCache caches results of searches - ordered lists of
          document ids (DocList) based on a query, a sort, and the range
@@ -209,14 +209,9 @@
 
   <!-- documentCache caches Lucene Document objects (the stored fields for each document).
        Since Lucene internal document ids are transient, this cache will not be autowarmed.  -->
-    <documentCache class="solr.LRUCache" size="50000" initialSize="50000" autowarmCount="10000"/>
+    <documentCache class="solr.LRUCache" size="30000" initialSize="30000" autowarmCount="10000"/>
 
-    <fieldValueCache
-	class="solr.FastLRUCache"
-	size="50000"
-	autowarmCount="15"
-	showItems="15"
-	cleanupThread="true"/>
+    <fieldValueCache class="solr.FastLRUCache" size="50000" autowarmCount="15" showItems="15" cleanupThread="true"/>
 
     <!-- If true, stored fields that are not requested will be loaded lazily.
 
@@ -314,9 +309,7 @@
     -->
   <requestDispatcher handleSelect="true">
     <!--Make sure your system has some authentication before enabling remote streaming!  -->
-    <requestParsers enableRemoteStreaming="true"
-                    multipartUploadLimitInKB="2048000"
-                    formdataUploadLimitInKB="2048"/>
+    <requestParsers enableRemoteStreaming="true" multipartUploadLimitInKB="2048000" formdataUploadLimitInKB="2048"/>
 
     <!-- Set HTTP caching related parameters (for proxy caches and clients).
 
@@ -325,8 +318,7 @@
          <cacheControl>
     -->
     <!-- <httpCaching never304="true"> -->
-    <httpCaching lastModifiedFrom="openTime"
-                 etagSeed="Solr">
+    <httpCaching lastModifiedFrom="openTime" etagSeed="Solr">
        <!-- lastModFrom="openTime" is the default, the Last-Modified value
             (and validation against If-Modified-Since requests) will all be
             relative to when the current Searcher was opened.
@@ -538,9 +530,7 @@
            field value analysis will be marked as "matched" for every
            token that is produces by the query analysis
    -->
-  <requestHandler name="/analysis/field"
-                  startup="lazy"
-                  class="solr.FieldAnalysisRequestHandler" />
+  <requestHandler name="/analysis/field" startup="lazy" class="solr.FieldAnalysisRequestHandler"/>
 
 
   <!-- Document Analysis Handler
@@ -573,9 +563,7 @@
     true, all field tokens that match the query tokens will be marked
     as a "match".
   -->
-  <requestHandler name="/analysis/document"
-                  class="solr.DocumentAnalysisRequestHandler"
-                  startup="lazy" />
+  <requestHandler name="/analysis/document" class="solr.DocumentAnalysisRequestHandler" startup="lazy"/>
 
 
   <!-- ping/healthcheck -->
