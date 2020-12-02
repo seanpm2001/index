@@ -1,3 +1,5 @@
+**This repository is not maintained any longer.**
+
 # finc Solr schema
 
 The [finc](https://finc.info) Solr schema is a derivative of the [VuFind standard Solr schema](https://github.com/vufind-org/vufind/tree/master/solr/vufind/biblio/conf). It is used by Solr cores that empower discovery systems for libraries of the finc user community, e.g.,  [Leipzig University Library]( http://www.ub.uni-leipzig.de/) (UBL) or [Saxon State and University Library Dresden](https://www.slub-dresden.de/) (SLUB). 
